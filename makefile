@@ -11,7 +11,7 @@ OBJ_FILES := $(patsubst *.c, $(BUILD_DIR)/%.o, $(SRC_FILES))
 LIB_TARGET := $(BIN_DIR)/schmove.a
 
 TESTS_DIR := tests
-TESTS_SRC_FILES := $(SRC_FILES) $(wildcard $(TESTS_DIR)/%.c)
+TESTS_SRC_FILES := $(SRC_FILES) $(wildcard $(TESTS_DIR)/*.c)
 TESTS_OBJ_FILES := $(patsubst *.c, $(BUILD_DIR)/%.o, $(TESTS_SRC_FILES))
 TESTS_TARGET := $(BIN_DIR)/tests_main
 
@@ -21,7 +21,7 @@ $(DIRS):
 lib: $(LIB_TARGET) | $(DIRS)
 
 $(LIB_TARGET): $(OBJ_FILES)
-	ar -rcs $@ $?
+	ar -rcs $@ $^
 
 tests: $(TESTS_TARGET) | $(DIRS)
 
